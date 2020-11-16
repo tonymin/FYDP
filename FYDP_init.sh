@@ -12,11 +12,23 @@ function git_clone {
     fi
 }
 
-# Assume relative location of modules folder
-cd MagicMirror/modules
+# Get script path. Assume its in project root
+SCRIPT=`realpath $0`
+SCRIPTPATH=`dirname $SCRIPT`
+PROJECTROOT=$SCRIPTPATH
+
+# Init MagicMirror submodule
+git pull submodule update --init --recursive
+
+# install MagicMirror
+cd $PROJECTROOT/MagicMirror
+npm install
+cp config/config.js.sample config/config.js
+
+# Get all 3rd party modules
+cd $PROJECTROOT/MagicMirror/modules
 
 git_clone https://github.com/edward-shen/MMM-pages.git
-
 git clone https://github.com/Veldrovive/MMM-Page-Selector.git
-
 git_clone https://github.com/edward-shen/MMM-page-indicator.git
+

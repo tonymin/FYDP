@@ -4,3 +4,4 @@
 
 cd MagicMirror/modules
 
+# TODO: our config.js will need to be copied over as well
