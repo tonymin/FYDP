@@ -18,7 +18,7 @@ SCRIPTPATH=`dirname $SCRIPT`
 PROJECTROOT=$SCRIPTPATH
 
 # Init MagicMirror submodule
-git pull submodule update --init --recursive
+git submodule update --init --recursive
 
 # install MagicMirror
 cd $PROJECTROOT/MagicMirror
