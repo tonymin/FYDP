@@ -15,13 +15,15 @@ function get_module {
     
     if [ ! -d $LOCALREPO_VC_DIR ]
     then
-        echo "Cloning ${LOCALREPO} src: ${REPOSRC}"
+        echo "Cloning ${LOCALREPO}"
         git clone $REPOSRC $LOCALREPO
     else
-        echo "Updating ${LOCALREPO} src: ${REPOSRC}"
+        echo "Updating ${LOCALREPO}"
         cd $LOCALREPO
         git pull $REPOSRC
     fi
+    echo "src:${REPOSRC}"
+    echo "dst:${LOCALREPO}"
     echo "*******************"
     
     # clone if not exist or update if exist
@@ -38,6 +40,8 @@ function get_module {
 SCRIPT=`realpath $0`
 SCRIPTPATH=`dirname $SCRIPT`
 PROJECTROOT=$SCRIPTPATH
+MODULE_DIR="$PROJECTROOT/MagicMirror/modules"
+
 
 #######################################################
 ### Init/update MagicMirror submodule
@@ -45,14 +49,15 @@ git submodule update --init --recursive
 
 #######################################################
 ### 3rd party modules
-cd $PROJECTROOT/MagicMirror/modules
+# IMPORTANT: double check the name of destination folder matches the module repo name
 
-get_module https://github.com/Veldrovive/MMM-Page-Selector.git MMM-Page-Selector
-get_module https://github.com/edward-shen/MMM-pages.git MMM-pages
-get_module https://github.com/edward-shen/MMM-page-indicator.git MMM-page-indicator
+get_module https://github.com/Veldrovive/MMM-Page-Selector.git "${MODULE_DIR}/MMM-Page-Selector"
+get_module https://github.com/edward-shen/MMM-pages.git "${MODULE_DIR}/MMM-pages"
+get_module https://github.com/edward-shen/MMM-page-indicator.git "${MODULE_DIR}/MMM-page-indicator"
+get_module https://github.com/Jopyth/MMM-Remote-Control.git "${MODULE_DIR}/MMM-Remote-Control"
 
 #######################################################
 ### install & update MagicMirror packages
 cd $PROJECTROOT/MagicMirror
-npm install
-npm update 
+npm install # need this to install dependencies
+npm update # need this to update dependencies
