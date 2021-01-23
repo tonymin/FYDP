@@ -102,7 +102,7 @@ var config = {
 				broadcastNewsFeeds: true,
 				broadcastNewsUpdates: true
 			}
-		},
+		},/*
 		{
 			module: "MMM-PIR-Sensor",
 			config: {
@@ -118,7 +118,7 @@ var config = {
 				usePIR: true,
 				calibrate: true // debug
 			}
-		},
+		},*/
 		{
 			module: 'MMM-pages',
 			config: {
