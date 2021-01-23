@@ -104,12 +104,28 @@ var config = {
 			}
 		},
 		{
+			module: "MMM-PIR-Sensor",
+			config: {
+				sensorPin: 38
+			}
+		},
+		{
+			module: "MMM-NearCompliments",
+			position: "bottom_left",
+			config: {
+				echoPin: 18,
+				triggerPin: 16,
+				usePIR: true,
+				calibrate: true // debug
+			}
+		},
+		{
 			module: 'MMM-pages',
 			config: {
 					modules:
 						[[ "weatherforecast", "newsfeed"],
 						 [ "calendar", "compliments" ]],
-					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control"],
+					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control", "MMM-NearCompliments"],
 					rotationTime : 1000, // auto-rotate time in ms (NOTE: timing is quite off ...)
 					/*
 					hiddenPages: {

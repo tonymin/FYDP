@@ -55,6 +55,8 @@ get_module https://github.com/Veldrovive/MMM-Page-Selector.git "${MODULE_DIR}/MM
 get_module https://github.com/edward-shen/MMM-pages.git "${MODULE_DIR}/MMM-pages"
 get_module https://github.com/edward-shen/MMM-page-indicator.git "${MODULE_DIR}/MMM-page-indicator"
 get_module https://github.com/Jopyth/MMM-Remote-Control.git "${MODULE_DIR}/MMM-Remote-Control"
+get_module https://github.com/semox/MMM-NearCompliments.git "${MODULE_DIR}/MMM-NearCompliments"
+get_module https://github.com/paviro/MMM-PIR-Sensor.git "${MODULE_DIR}/MMM-PIR-Sensor"
 
 #######################################################
 ### install & update MagicMirror packages
