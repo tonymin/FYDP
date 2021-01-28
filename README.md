@@ -1,7 +1,7 @@
 # FYDP
 
 Custom modules:
-- TBD
+- MMM-SensorControl
 
 List of 3rd party modules used:
 - https://github.com/edward-shen/MMM-pages.git
@@ -18,3 +18,4 @@ Scripts:
 
 - run.sh
   - Run this script to start the MagicMirror
+  - "run.sh <dev>" will run in dev mode
