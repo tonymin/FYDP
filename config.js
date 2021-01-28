@@ -120,12 +120,19 @@ var config = {
 			}
 		},*/
 		{
+			module: 'MMM-SensorControl',
+			position: "top_right",
+			config: {
+				text: "Hello"
+			}
+		},
+		{
 			module: 'MMM-pages',
 			config: {
 					modules:
 						[[ "weatherforecast", "newsfeed"],
 						 [ "calendar", "compliments" ]],
-					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control", "MMM-NearCompliments"],
+					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control", "MMM-NearCompliments","MMM-SensorControl"],
 					rotationTime : 1000, // auto-rotate time in ms (NOTE: timing is quite off ...)
 					/*
 					hiddenPages: {
