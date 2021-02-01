@@ -2,6 +2,8 @@
 import RPi.GPIO as GPIO
 import time
 
+import requests
+
 PIR_InPin = 38
 
 def setup():
@@ -19,6 +21,7 @@ def loop():
             if state != i:
                 state = i
                 print('ON')
+                x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/pir_trigger") # send notification
             
         else:
             if state != i:

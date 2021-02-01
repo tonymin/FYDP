@@ -6,8 +6,11 @@
 
 # arg handling
 DEV=false
+SERVER=false
 if [[ $1 = "dev" ]]; then
     DEV=true
+elif [[ $1 = "server" ]]; then
+    SERVER=true
 fi
 
 # Constants
@@ -26,6 +29,8 @@ cp -R "$ROOT/MMM-SensorControl" "${MODULE_DIR}"
 cd ${MM_ROOT}
 if [ "$DEV" = true ]; then
     npm start dev
+elif [[ $SERVER = true ]]; then
+    npm run server
 else
     npm start
 fi
