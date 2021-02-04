@@ -37,42 +37,20 @@ Module.register("MMM-SensorControl",{
         // Log.log(this.name + " received a module notification: " + notification);
         switch(notification){
             case "PIR_USER_DETECTED":
-                this.my_temp_counter += 1
+                this.updateRemoteControlAPI(); // TODO: remove this if we are not sending states payload
                 this.sendSocketNotification("LOG", "PIR detected, payload: " + JSON.stringify(payload));
-                // Register API actions for MMM-Remote-Control.
-                this.sendNotification("REGISTER_API", {
-                    module: this.name, 
-                        path: this.name, 
-                        actions: {
-                            pir_trigger: { 
-                                notification: "PIR_USER_DETECTED",
-                                payload: {
-                                    'counter':this.my_temp_counter,
-                                    'x': 1
-                                }
-                            },
-
-                        }    
-                });
+                
+                break;
+            case "SENSOR_RESET":
+                Log.log(this.name + " SENSOR reset");
+                this.sendSocketNotification(notification);
+                
                 break;
             case "ALL_MODULES_STARTED":
                 // now we can send notifications to other modules
-                
-                // Register API actions for MMM-Remote-Control.
-                this.sendNotification("REGISTER_API", {
-                    module: this.name, 
-                        path: this.name, 
-                        actions: {
-                            pir_trigger: { 
-                                notification: "PIR_USER_DETECTED",
-                                payload: {
-                                    'counter':this.my_temp_counter,
-                                    'x': 1
-                                }
-                            },
+                this.updateRemoteControlAPI();
 
-                        }    
-                });
+                this.sendSocketNotification(notification); // call this last
                 break;
             default:
                 break;
@@ -81,20 +59,45 @@ Module.register("MMM-SensorControl",{
 
     socketNotificationRecieved: function(notification, payload){
         // notifications  directly from node_helper
+        Log.log(this.name + " received node_helper notification: " + notification);
+        switch(notification){
+            default:
+                break;
+        }
+        
     },
 
-    updateRemoteControlAPI : function(notification){
+    updateRemoteControlAPI : function(){
         // registers API for MMM-Remote-Control
-        let actions = {}
-        if (notification == 'ALL' || notification == "PIR_USER_DETECTED"){
-            actions.pir_trigger = {notification: "PIR_USER_DETECTED",
+        let registeredActions = {}
+
+        // testing state update
+        this.my_temp_counter += 1;
+
+        // PIR sensor
+        registeredActions.pir_trigger = {
+            notification: "PIR_USER_DETECTED",
             payload: {
                 'counter':this.my_temp_counter,
                 'x': 1
-            }}
-             
-                    
-        }
+            }
+        };
+
+
+        // reset signal
+        registeredActions.reset_sensor = {
+            notification: "SENSOR_RESET",
+        };
+        
+        
+        this.sendSocketNotification("LOG", "API update: " + JSON.stringify(registeredActions));
+
+        // send notication to update the API configurations
+        this.sendNotification("REGISTER_API", {
+            module: this.name, 
+            path: this.name, 
+            actions: registeredActions
+        });
 
     },
 
