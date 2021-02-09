@@ -40,11 +40,11 @@ module.exports = NodeHelper.create({
         }	
         
         // debug log
-        const out = fs.openSync("/home/pi/projects/FYDP/MMM-SensorControl/test/stdout.log", "w");
-        const err = fs.openSync("/home/pi/projects/FYDP/MMM-SensorControl/test/stderr.log", "w");
+        const out = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stdout.log", "w");
+        const err = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stderr.log", "w");
 
         // spawn script
-        this.py_handle = child_process.spawn('python', ['/home/pi/projects/FYDP/MMM-SensorControl/test/sensor_loop.py', 'samepl_arge'],
+        this.py_handle = child_process.spawn('python', [__dirname+'/test/sensor_loop.py', 'samepl_arge'],
         {
             stdio: [process.stdin, out, err]
         });	
