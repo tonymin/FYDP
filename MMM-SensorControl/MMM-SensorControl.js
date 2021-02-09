@@ -36,6 +36,9 @@ Module.register("MMM-SensorControl",{
         // notifications from all modules
         // Log.log(this.name + " received a module notification: " + notification);
         switch(notification){
+            case "USER_PRESENCE_DETECTED":
+                this.sendSocketNotification(notification, payload);
+                break;
             case "PIR_USER_DETECTED":
                 this.updateRemoteControlAPI(); // TODO: remove this if we are not sending states payload
                 this.sendSocketNotification("LOG", "PIR detected, payload: " + JSON.stringify(payload));
@@ -83,8 +86,14 @@ Module.register("MMM-SensorControl",{
             }
         };
 
+        // user presence
+        registeredActions.user_detected = {
+            notification: "USER_PRESENCE_DETECTED",
+        };
+
 
         // reset signal
+        // TODO: do we expose this? or do we use the reset notification internally
         registeredActions.reset_sensor = {
             notification: "SENSOR_RESET",
         };

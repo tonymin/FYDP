@@ -1,6 +1,7 @@
 var NodeHelper = require("node_helper")
-const { spawn } = require('child_process');
-
+//const { spawn } = require('child_process');
+const child_process = require("child_process");
+const fs = require("fs");
 
 module.exports = NodeHelper.create({
     start: function(){
@@ -17,34 +18,11 @@ module.exports = NodeHelper.create({
             case "ALL_MODULES_STARTED":
                 // start the Python script and pass in configurations as argument
                 console.log(this.name + " Starting Python process.");
-                
-                this.py_handle = spawn('python3', ['/home/pi/projects/FYDP/MMM-SensorControl/test/sensor_loop.py', 'samepl_arge']);
-                this.py_handle.on('close', (code, signal) => {
-                    console.log( this.name + `Python process terminated due to receipt of signal ${signal}`);
-                });
-                
-
+                this.startSensorScript();
                 break;
             case "SENSOR_RESET":
                 console.log(this.name + " Respawn Python process.");
-                
-                if (this.py_handle != null){
-                    // Send SIGTERM to process
-                    this.py_handle.kill('SIGTERM');
-                }
-                // respawn
-                
-                this.py_handle = spawn('python3', ['/home/pi/projects/FYDP/MMM-SensorControl/test/sensor_loop.py', 'samepl_arge']);
-                this.py_handle.on('close', (code, signal) => {
-                    console.log( this.name + `Python process terminated due to receipt of signal ${signal}`);
-                });
-                
-                
-                break;
-            default:
-                break;
-        }
-    },
+                this.startSensorScript();
 
-});
-
+                break;
+            case "USER_PRESENCE_DETECTED":*
