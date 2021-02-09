@@ -25,4 +25,32 @@ module.exports = NodeHelper.create({
                 this.startSensorScript();
 
                 break;
-            case "USER_PRESENCE_DETECTED":*
+            case "USER_PRESENCE_DETECTED":
+                console.log(this.name + " USER_PRESENCE_DETECTED." + JSON.stringify(payload));
+                break;
+            default:
+                break;
+        }
+    },
+
+    startSensorScript : function(){
+        if (this.py_handle != undefined && this.py_handle != null){	
+            // Send SIGTERM to process	
+            this.py_handle.kill('SIGTERM');	
+        }	
+        
+        // debug log
+        const out = fs.openSync("/home/pi/projects/FYDP/MMM-SensorControl/test/stdout.log", "w");
+        const err = fs.openSync("/home/pi/projects/FYDP/MMM-SensorControl/test/stderr.log", "w");
+
+        // spawn script
+        this.py_handle = child_process.spawn('python', ['/home/pi/projects/FYDP/MMM-SensorControl/test/sensor_loop.py', 'samepl_arge'],
+        {
+            stdio: [process.stdin, out, err]
+        });	
+
+        this.py_handle.on('close', (code, signal) => {	
+            console.log( this.name + `Python process terminated due to receipt of signal ${signal}`);	
+        });
+    },
+});
