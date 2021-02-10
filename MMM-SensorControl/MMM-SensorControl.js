@@ -6,13 +6,15 @@ Module.register("MMM-SensorControl",{
 
     // module configurations (default)
     defaults:{
-        text: "Hello world"
+        text: "Hello world",
+        idle_timer: 10, // in seconds
     },
 
     start: function() {
         // after all modules are loaded and ready to start. DOM objects not created yet
 
         Log.info("Starting module: " + this.name);
+        this.sendSocketNotification('CONFIG', this.config);
         this.my_temp_counter = 0
         
           
@@ -37,6 +39,9 @@ Module.register("MMM-SensorControl",{
         // Log.log(this.name + " received a module notification: " + notification);
         switch(notification){
             case "USER_PRESENCE_DETECTED":
+                this.sendSocketNotification(notification, payload);
+                break;
+            case "USER_ABSENT":
                 this.sendSocketNotification(notification, payload);
                 break;
             case "PIR_USER_DETECTED":
@@ -84,6 +89,11 @@ Module.register("MMM-SensorControl",{
                 'counter':this.my_temp_counter,
                 'x': 1
             }
+        };
+
+        // user absent (PIR detects 0 or Ultrasonic does not detect object within range)
+        registeredActions.user_absent = {
+            notification: "USER_ABSENT",
         };
 
         // user presence

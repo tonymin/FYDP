@@ -45,12 +45,12 @@ def on_PIR_detect():
         pulse_end_time = time.time()
     pulse_duration = pulse_end_time - pulse_start_time
     distance = round(pulse_duration * 17150, 2)
-    data = {"distance(cm)":distance}
-    x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_detected", data=json.dumps(data), headers={'Content-Type': 'application/json'})
     print("Distance:", distance,"cm")
+    return distance
 
 def loop():
     state = 0
+    user_detected = False
     while True:
         i = GPIO.input(PIR_InPin)
         if i:
@@ -61,12 +61,21 @@ def loop():
                 # notify magicmirror
                 x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/pir_trigger")
 
-                # when PIR triggers, launch the sonar pulses to detect distance
-                on_PIR_detect()
+            # actively uses ultrasonic to detect user distance while PIR is triggered
+            if not user_detected:
+                # when PIR triggers and user is not detected, launch the sonar pulses to detect distance
+                distance = on_PIR_detect()
+                data = {"distance(cm)":distance}
+                if distance < 100: # TODO: make distance a parameter
+                    x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_detected", \
+                        data=json.dumps(data), headers={'Content-Type': 'application/json'})
+                    user_detected = True
         else:
             if state != i:
                 state = i
+                user_detected= False
                 print('OFF')
+                x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_absent")
 
 def destroy():
     GPIO.cleanup()                      # Release all GPIO
