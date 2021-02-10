@@ -34,6 +34,10 @@ module.exports = NodeHelper.create({
                 this.startSensorScript();
 
                 break;
+            case "PIR_USER_DETECTED":
+                console.log(this.name + " PIR detected, payload: " + JSON.stringify(payload));
+                
+                break;
             case "USER_PRESENCE_DETECTED":
                 console.log(this.name + " USER_PRESENCE_DETECTED." + JSON.stringify(payload));
                 this.clearIdleTimer();

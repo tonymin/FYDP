@@ -46,7 +46,7 @@ Module.register("MMM-SensorControl",{
                 break;
             case "PIR_USER_DETECTED":
                 this.updateRemoteControlAPI(); // TODO: remove this if we are not sending states payload
-                this.sendSocketNotification("LOG", "PIR detected, payload: " + JSON.stringify(payload));
+                this.sendSocketNotification(notification, payload);
                 
                 break;
             case "SENSOR_RESET":
