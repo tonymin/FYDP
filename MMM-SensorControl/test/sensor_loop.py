@@ -60,6 +60,7 @@ def loop():
 
                 # notify magicmirror
                 x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/pir_trigger")
+                print("pir_detected")
 
             # actively uses ultrasonic to detect user distance while PIR is triggered
             if not user_detected:
@@ -70,6 +71,7 @@ def loop():
                     x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_detected", \
                         data=json.dumps(data), headers={'Content-Type': 'application/json'})
                     user_detected = True
+                    print("user_detected")
         else:
             if state != i:
                 state = i
