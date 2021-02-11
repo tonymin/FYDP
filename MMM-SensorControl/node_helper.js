@@ -76,7 +76,7 @@ module.exports = NodeHelper.create({
         });
     },
 
-    activateMonitor: function (){
+    activateMonitor : function (){
         
         // Check if hdmi output is already on
         child_process.exec("/usr/bin/vcgencmd display_power").stdout.on('data', function(data) {
@@ -87,7 +87,7 @@ module.exports = NodeHelper.create({
     },
 
     deactivateMonitor: function (){
-        exec("/usr/bin/vcgencmd display_power 0", null);
+        child_process.exec("/usr/bin/vcgencmd display_power 0", null);
     },
 
     startIdleTimer: function(){
