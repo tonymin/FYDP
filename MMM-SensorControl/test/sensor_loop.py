@@ -78,7 +78,9 @@ def loop():
                 user_detected= False
                 print('OFF')
                 x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_absent")
-
+    
+    time.sleep(1) # sleep to minimize CPU usage
+    
 def destroy():
     GPIO.cleanup()                      # Release all GPIO
 

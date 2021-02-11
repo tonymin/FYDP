@@ -38,6 +38,26 @@ Module.register("MMM-SensorControl",{
         // notifications from all modules
         // Log.log(this.name + " received a module notification: " + notification);
         switch(notification){
+            case "DOWN_GESTURE":
+                this.sendSocketNotification(notification, payload);
+                this.config.text = "DOWN";
+                this.updateDom();
+                break;
+            case "LEFT_GESTURE":
+                this.sendSocketNotification(notification, payload);
+                this.config.text = "LEFT";
+                this.updateDom();
+                break;
+            case "RIGHT_GESTURE":
+                this.sendSocketNotification(notification, payload);
+                this.config.text = "RIGHT";
+                this.updateDom();
+                break;
+            case "UP_GESTURE":
+                this.sendSocketNotification(notification, payload);
+                this.config.text = "UP";
+                this.updateDom();
+                break;
             case "USER_PRESENCE_DETECTED":
                 this.sendSocketNotification(notification, payload);
                 break;
@@ -105,6 +125,24 @@ Module.register("MMM-SensorControl",{
         // TODO: do we expose this? or do we use the reset notification internally
         registeredActions.reset_sensor = {
             notification: "SENSOR_RESET",
+        };
+
+        // gestures
+        registeredActions.up_gesture = {
+            notification: "UP_GESTURE",
+        };
+        registeredActions.down_gesture = {
+            notification: "down_GESTURE",
+        };
+        registeredActions.left_gesture = {
+            notification: "left_GESTURE",
+        };
+        registeredActions.right_gesture = {
+            notification: "RIGHT_GESTURE",
+        };
+
+        registeredActions.user_detected = {
+            notification: "USER_PRESENCE_DETECTED",
         };
         
         

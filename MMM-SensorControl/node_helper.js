@@ -17,6 +17,14 @@ module.exports = NodeHelper.create({
         //console.log(this.name + " [node_helper] notification: " + notification);
         var self = this;
         switch(notification){
+            case "DOWN_GESTURE":
+                break;
+            case "LEFT_GESTURE":
+                break;
+            case "RIGHT_GESTURE":
+                break;
+            case "UP_GESTURE":
+                break;
             case "CONFIG":
                 this.config = payload;
                 break;

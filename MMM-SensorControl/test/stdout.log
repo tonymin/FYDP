@@ -4,3 +4,5 @@ PIR setup
 using pin38
 SONAR setup
 Waiting for sensor to settle
+ON
+pir_detected
