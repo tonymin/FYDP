@@ -35,7 +35,8 @@ module.exports = NodeHelper.create({
             case "ALL_MODULES_STARTED":
                 // start the Python script and pass in configurations as argument
                 console.log(this.name + " Starting Python process.");
-                this.startSensorScript();
+                this.startSensorScript(); // user presence detection loop
+                this.startGestureDetectionScript(); // gesture sensor loop
                 this.startIdleTimer(); // from RESET state, assume monitor is ON and user is present, start the idle timer
                 break;
             case "SENSOR_RESET":
@@ -83,7 +84,30 @@ module.exports = NodeHelper.create({
         });	
 
         this.py_handle.on('close', (code, signal) => {
-            console.log( self.name + `Python process terminated due to receipt of signal ${signal}`);	
+            console.log( self.name + `Python process (user presence) terminated due to receipt of signal ${signal}`);	
+        });
+    },
+
+    startGestureDetectionScript : function(){
+        if (this.gesture_py_handle != undefined && this.gesture_py_handle != null){	
+            // Send SIGTERM to process	
+            this.gesture_py_handle.kill('SIGTERM');	
+        }
+
+        var self = this;
+        
+        // debug log
+        const out = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stdout_gesture.log", "w");
+        const err = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stderr_gesture.log", "w");
+
+        // spawn script
+        this.gesture_py_handle = child_process.spawn('python', [__dirname+'/test/gesture_loop.py'],
+        {
+            stdio: [process.stdin, out, err]
+        });	
+
+        this.gesture_py_handle.on('close', (code, signal) => {
+            console.log( self.name + `Python process (gesture) terminated due to receipt of signal ${signal}`);	
         });
     },
 
