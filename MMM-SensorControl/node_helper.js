@@ -15,6 +15,7 @@ module.exports = NodeHelper.create({
     
     socketNotificationReceived: function( notification, payload){
         //console.log(this.name + " [node_helper] notification: " + notification);
+        var self = this;
         switch(notification){
             case "CONFIG":
                 this.config = payload;
@@ -48,7 +49,7 @@ module.exports = NodeHelper.create({
             case "USER_ABSENT":
                 console.log(this.name + " USER_ABSENT." + JSON.stringify(payload));
                 this.clearIdleTimer();
-                this.deactivateMonitor();
+                this.startIdleTimer();
                 break;
             default:
                 break;
@@ -60,6 +61,8 @@ module.exports = NodeHelper.create({
             // Send SIGTERM to process	
             this.py_handle.kill('SIGTERM');	
         }
+
+        var self = this;
         
         // debug log
         const out = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stdout.log", "w");
@@ -72,7 +75,7 @@ module.exports = NodeHelper.create({
         });	
 
         this.py_handle.on('close', (code, signal) => {
-            console.log( this.name + `Python process terminated due to receipt of signal ${signal}`);	
+            console.log( self.name + `Python process terminated due to receipt of signal ${signal}`);	
         });
     },
 
@@ -91,13 +94,15 @@ module.exports = NodeHelper.create({
     },
 
     startIdleTimer: function(){
+        var self = this;
         this.deactivateMonitorTimeout = setTimeout(function() {
-            this.deactivateMonitor();
-        }, this.config.idle_timer*1000);
+            self.deactivateMonitor();
+        }, self.config.idle_timer*1000);
     },
 
     clearIdleTimer: function(){
-        clearTimeout(this.deactivateMonitorTimeout);
+        var self = this;
+        clearTimeout(self.deactivateMonitorTimeout);
     },
 
 });

@@ -45,7 +45,6 @@ Module.register("MMM-SensorControl",{
                 this.sendSocketNotification(notification, payload);
                 break;
             case "PIR_USER_DETECTED":
-                this.updateRemoteControlAPI(); // TODO: remove this if we are not sending states payload
                 this.sendSocketNotification(notification, payload);
                 
                 break;
