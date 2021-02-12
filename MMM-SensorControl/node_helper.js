@@ -14,9 +14,13 @@ module.exports = NodeHelper.create({
     },
     
     socketNotificationReceived: function( notification, payload){
-        //console.log(this.name + " [node_helper] notification: " + notification);
+        //console.log(this.name + " [node_helper] notification: " + notification + " Payload: "+payload);
         var self = this;
         switch(notification){
+            case "NOTIFICATION_INPUT":
+            case "NOTIFICATION_SLIDER":
+                console.log(this.name + " [node_helper] notification: " + notification + " Payload: %j",payload);
+                break;
             case "DOWN_GESTURE":
                 break;
             case "LEFT_GESTURE":

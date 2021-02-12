@@ -19,3 +19,15 @@ Scripts:
 - run.sh
   - Run this script to start the MagicMirror
   - "run.sh <dev>" will run in dev mode
+
+MMM-Remote-Control patch:
+- Custom menu slider and input types does not send the value along with notification payload
+  - remote.js: createMenuElement()
+  - fix (slider type): this.sendSocketNotification("REMOTE_ACTION", Object.assign({ action: content.action.toUpperCase() }, content.content, 
+                    { payload: Object.assign({}, content.content == undefined ? {} : content.content.payload, {value: document.getElementById(`${content.id}-slider`).value})},
+                    { value: document.getElementById(`${content.id}-slider`).value }));
+
+  - fix (input type): this.sendSocketNotification("REMOTE_ACTION", Object.assign({ action: content.action.toUpperCase() }, content.content, 
+                    { payload: Object.assign({}, content.content == undefined ? {} : content.content.payload, {value: document.getElementById(`${content.id}-input`).value})},
+                    { value: document.getElementById(`${content.id}-input`).value }));
+  - appends the "value" property in the "payload" tag. Override any existing "value" property.

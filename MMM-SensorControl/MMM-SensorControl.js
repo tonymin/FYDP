@@ -37,6 +37,7 @@ Module.register("MMM-SensorControl",{
     notificationReceived: function(notification, payload, sender) {
         // notifications from all modules
         // Log.log(this.name + " received a module notification: " + notification);
+        this.sendSocketNotification(notification, payload); // forwatd all notifications to node hlper
         switch(notification){
             case "DOWN_GESTURE":
                 this.sendSocketNotification(notification, payload);

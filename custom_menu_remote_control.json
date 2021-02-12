@@ -47,26 +47,26 @@
          "text": "Sub-Menu",
          "items": [{
                "id": "custom-item-4",
-               "type": "item",
+               "type": "input",
                "icon": "dot-circle-o",
                "text": "Sub-Menu Item 1",
                "action": "NOTIFICATION",
                "content": {
-                  "notification": "NOTIFCATION_TEXT_4",
-                  "payload": "This notification requires a string payload"
+                  "notification": "NOTIFICATION_INPUT"
                }
             },
             {
                "id": "custom-item-2",
-               "type": "item",
+               "type": "slider",
                "icon": "dot-circle-o",
                "text": "Sub-Menu Item 2",
                "action": "NOTIFICATION",
                "content": {
-                  "notification": "NOTIFCATION_TEXT_5",
+                  "notification": "NOTIFICATION_SLIDER",
                   "payload": {
                      "title": "Payload Object",
-                     "message": "This notification requires a payload object"
+                     "message": "This notification requires a payload object",
+                     "value" : "x"
                   }
                }
             }
