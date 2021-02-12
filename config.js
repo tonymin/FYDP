@@ -152,7 +152,9 @@ var config = {
 		{
 			module: 'MMM-Remote-Control',
 			position: 'bottom_left',
-			config: {}
+			config: {
+				customMenu: "custom_menu_remote_control.json",
+			}
 		},
 	]
 };

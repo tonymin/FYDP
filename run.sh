@@ -22,6 +22,9 @@ MODULE_DIR="${ROOT}/MagicMirror/modules"
 # copy config file MagicMirror/config
 cp ${ROOT}/config.js ${CONFIG_DIR}/config.js
 
+# copy MMM-Remote-Control custom menu file to config folder 
+cp ${ROOT}/custom_menu_remote_control.json ${CONFIG_DIR}/custom_menu_remote_control.json
+
 # TODO: Copy over the custom modules to the MagicMirror/modules folder
 cp -R "$ROOT/MMM-SensorControl" "${MODULE_DIR}"
 
