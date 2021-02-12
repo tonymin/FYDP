@@ -23,7 +23,7 @@ Scripts:
 MMM-Remote-Control patch:
 - Issue: Custom menu slider and input types does not send the value along with notification payload
   - Patch location: file:remote.js function:createMenuElement()
-  - Description: The notification object's "payload" property does not include the "value" property of input/slider. Thus it is not delievered to target external modules via notifaction payload.
+  - Description: The notification object's "payload" property does not include the "value" property of input/slider. Thus it is not delievered to target external modules via notification payload.
   - fix (slider type): this.sendSocketNotification("REMOTE_ACTION", Object.assign({ action: content.action.toUpperCase() }, content.content, 
                     { payload: Object.assign({}, content.content == undefined ? {} : content.content.payload, {value: document.getElementById(`${content.id}-slider`).value})},
                     { value: document.getElementById(`${content.id}-slider`).value }));
