@@ -50,7 +50,7 @@ git submodule update --init --recursive
 ### 3rd party modules
 # IMPORTANT: double check the name of destination folder matches the module repo name
 
-get_module https://github.com/Veldrovive/MMM-Page-Selector.git "${MODULE_DIR}/MMM-Page-Selector"
+#get_module https://github.com/Veldrovive/MMM-Page-Selector.git "${MODULE_DIR}/MMM-Page-Selector"
 get_module https://github.com/edward-shen/MMM-pages.git "${MODULE_DIR}/MMM-pages"
 get_module https://github.com/edward-shen/MMM-page-indicator.git "${MODULE_DIR}/MMM-page-indicator"
 get_module https://github.com/Jopyth/MMM-Remote-Control.git "${MODULE_DIR}/MMM-Remote-Control"
