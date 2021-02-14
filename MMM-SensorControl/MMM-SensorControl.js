@@ -85,10 +85,18 @@ Module.register("MMM-SensorControl",{
         }
     },
 
-    socketNotificationRecieved: function(notification, payload){
+    socketNotificationReceived: function(notification, payload){
         // notifications  directly from node_helper
-        Log.log(this.name + " received node_helper notification: " + notification);
+        this.sendSocketNotification("LOG", this.name+ " received node_helper notification: " + notification);
+        let lockStringObj = { lockString: this.identifier };
         switch(notification){
+            case "SHOW_ALL":
+                MM.getModules().enumerate(module => module.show(1000, lockStringObj));
+                break;
+            case "HIDE_ALL":
+                MM.getModules().enumerate(module => module.hide(1000, lockStringObj));
+                //setTimeout(() => {MM.getModules().enumerate(module => module.show(1000, lockStringObj));}, 5000); // just for testing
+                break;
             default:
                 break;
         }

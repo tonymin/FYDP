@@ -117,6 +117,9 @@ module.exports = NodeHelper.create({
 
     activateMonitor : function (){
         var self = this;
+        this.sendSocketNotification("SHOW_ALL", true);
+        
+        /*
         // Check if hdmi output is already on
         child_process.exec("/usr/bin/vcgencmd display_power").stdout.on('data', function(data) {
             if (data.indexOf("display_power=0") === 0) {
@@ -124,12 +127,17 @@ module.exports = NodeHelper.create({
                 console.log( self.name + ` Powering ON monitor`);	
             }
         });
+        */
     },
 
     deactivateMonitor: function (){
         var self = this;
+        
         console.log( self.name + ` Powering OFF monitor`);	
-        child_process.exec("/usr/bin/vcgencmd display_power 0", null);
+
+        //child_process.exec("/usr/bin/vcgencmd display_power 0", null);
+
+        this.sendSocketNotification("HIDE_ALL", true);
     },
 
     startIdleTimer: function(){
