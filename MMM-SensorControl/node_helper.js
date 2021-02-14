@@ -41,7 +41,7 @@ module.exports = NodeHelper.create({
                 console.log(this.name + " Starting Python process.");
                 this.startSensorScript(); // user presence detection loop
                 this.startGestureDetectionScript(); // gesture sensor loop
-                this.startIdleTimer(); // from RESET state, assume monitor is ON and user is present, start the idle timer
+                this.resetIdleTimer(); // from RESET state, assume monitor is ON and user is present, start the idle timer
                 break;
             case "SENSOR_RESET":
                 console.log(this.name + " Respawn Python process.");
@@ -54,15 +54,13 @@ module.exports = NodeHelper.create({
                 break;
             case "USER_PRESENCE_DETECTED":
                 console.log(this.name + " USER_PRESENCE_DETECTED." + JSON.stringify(payload));
-                this.clearIdleTimer();
                 this.activateMonitor(); // wont do anything if monitor is already ON
-                this.startIdleTimer();
+                this.resetIdleTimer();
 
                 break;
             case "USER_ABSENT":
                 console.log(this.name + " USER_ABSENT." + JSON.stringify(payload));
-                this.clearIdleTimer();
-                this.startIdleTimer();
+                this.resetIdleTimer();
                 break;
             default:
                 break;
@@ -140,9 +138,10 @@ module.exports = NodeHelper.create({
         this.sendSocketNotification("HIDE_ALL", true);
     },
 
-    startIdleTimer: function(){
+    resetIdleTimer: function(){
         var self = this;
-        this.deactivateMonitorTimeout = setTimeout(function() {
+        clearTimeout(self.deactivateMonitorTimeout);
+        self.deactivateMonitorTimeout = setTimeout(function() {
             self.deactivateMonitor();
         }, self.config.idle_timer*1000);
     },

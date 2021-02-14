@@ -72,6 +72,10 @@ def loop():
                         data=json.dumps(data), headers={'Content-Type': 'application/json'})
                     user_detected = True
                     print("user_detected")
+            else:
+                # user is already detected, PIR still active. Send signal to MM to reset the idle timer
+                time.sleep(2) # wait a bit, we dont want to send to many signals
+                x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_detected")
         else:
             if state != i:
                 state = i
