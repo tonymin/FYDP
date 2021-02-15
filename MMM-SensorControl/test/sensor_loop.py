@@ -38,15 +38,26 @@ def pulse_sonar_trigger():
     GPIO.output(PIN_TRIGGER, GPIO.LOW)
 
 def on_PIR_detect():
-    pulse_sonar_trigger()
-    while GPIO.input(PIN_ECHO)==0:
-        pulse_start_time = time.time()
-    while GPIO.input(PIN_ECHO)==1:
-        pulse_end_time = time.time()
-    pulse_duration = pulse_end_time - pulse_start_time
-    distance = round(pulse_duration * 17150, 2)
-    print("Distance:", distance,"cm")
-    return distance
+    try:
+        #pulse_sonar_trigger()
+        # inline the function "pulse_sonar_trigger" to reduce function call overhead delay
+        GPIO.output(PIN_TRIGGER, GPIO.HIGH)
+        time.sleep(0.00001)
+        GPIO.output(PIN_TRIGGER, GPIO.LOW)
+
+        while GPIO.input(PIN_ECHO)==0:
+            pulse_start_time = time.time()
+        while GPIO.input(PIN_ECHO)==1:
+            pulse_end_time = time.time()
+        pulse_duration = pulse_end_time - pulse_start_time
+        distance = round(pulse_duration * 17150, 2)
+        print("Distance:", distance,"cm")
+        return distance
+
+    except:
+        # catch any timing issue
+        print("[on_PIR_detect] An exception occurred")
+        return 300 # return a distance that is beyond the detection range
 
 def loop():
     state = 0
