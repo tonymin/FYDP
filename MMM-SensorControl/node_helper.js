@@ -103,7 +103,7 @@ module.exports = NodeHelper.create({
         const err = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stderr_gesture.log", "w");
 
         // spawn script
-        this.gesture_py_handle = child_process.spawn('python', [__dirname+'/test/gesture_loop.py'],
+        this.gesture_py_handle = child_process.spawn('python3', [__dirname+'/test/gesture_loop.py'],
         {
             stdio: [process.stdin, out, err]
         });	
