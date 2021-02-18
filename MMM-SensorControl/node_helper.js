@@ -77,11 +77,11 @@ module.exports = NodeHelper.create({
         var self = this;
         
         // debug log
-        const out = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stdout.log", "w");
-        const err = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stderr.log", "w");
+        const out = fs.openSync(__dirname+"/../../../MMM-SensorControl/scripts/stdout.log", "w");
+        const err = fs.openSync(__dirname+"/../../../MMM-SensorControl/scripts/stderr.log", "w");
 
         // spawn script
-        this.py_handle = child_process.spawn('python', [__dirname+'/test/sensor_loop.py', 'samepl_arge'],
+        this.py_handle = child_process.spawn('python', [__dirname+'/scripts/sensor_loop.py', 'samepl_arge'],
         {
             stdio: [process.stdin, out, err]
         });	
@@ -100,11 +100,11 @@ module.exports = NodeHelper.create({
         var self = this;
         
         // debug log
-        const out = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stdout_gesture.log", "w");
-        const err = fs.openSync(__dirname+"/../../../MMM-SensorControl/test/stderr_gesture.log", "w");
+        const out = fs.openSync(__dirname+"/../../../MMM-SensorControl/scripts/stdout_gesture.log", "w");
+        const err = fs.openSync(__dirname+"/../../../MMM-SensorControl/scripts/stderr_gesture.log", "w");
 
         // spawn script
-        this.gesture_py_handle = child_process.spawn('python3', [__dirname+'/test/gesture_loop.py'],
+        this.gesture_py_handle = child_process.spawn('python3', [__dirname+'/scripts/gesture_loop.py'],
         {
             stdio: [process.stdin, out, err]
         });	

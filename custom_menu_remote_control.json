@@ -222,6 +222,7 @@
                "icon": "dot-circle-o",
                "text": "Network name",
                "action": "NOTIFICATION",
+               "list": [],
                "content": {
                   "notification": "NOTIFICATION_INPUT"
                }
