@@ -56,7 +56,7 @@ get_module https://github.com/edward-shen/MMM-page-indicator.git "${MODULE_DIR}/
 get_module https://github.com/Jopyth/MMM-Remote-Control.git "${MODULE_DIR}/MMM-Remote-Control"
 #get_module https://github.com/semox/MMM-NearCompliments.git "${MODULE_DIR}/MMM-NearCompliments"
 #get_module https://github.com/paviro/MMM-PIR-Sensor.git "${MODULE_DIR}/MMM-PIR-Sensor"
-
+get_module https://github.com/eouia/MMM-Remote-Control-Repository.git "${MODULE_DIR}/MMM-Remote-Control-Repository"
 #######################################################
 ### copy custom module
 

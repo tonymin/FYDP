@@ -3,71 +3,237 @@
    "type": "menu",
    "icon": "id-card-o",
    "text": "%%TRANSLATE:CUSTOM_MENU%%",
-   "items": [{
-         "id": "custom-item-1",
-         "type": "item",
-         "icon": "dot-circle-o",
-         "text": "Menu Item 1",
-         "action": "NOTIFICATION",
-         "content": {
-            "notification": "NOTIFCATION_TEXT_1",
-            "payload": "This notification requires a string payload"
-         }
-      },
+   "items": [
       {
-         "id": "custom-item-2",
-         "type": "item",
-         "icon": "dot-circle-o",
-         "text": "Menu Item 2",
-         "action": "NOTIFICATION",
-         "content": {
-            "notification": "NOTIFCATION_TEXT_2",
-            "payload": {
-               "title": "Payload Object",
-               "message": "This notification requires a payload object"
-            }
-         }
-      },
-      {
-         "id": "custom-item-3",
-         "type": "item",
-         "icon": "dot-circle-o",
-         "text": "Menu Item 3",
-         "action": "NOTIFICATION",
-         "content": {
-            "notification": "NOTIFCATION_TEXT_3",
-            "payload": null
-         }
-      },
-      {
-         "id": "level2",
+         "id": "level2_gesture_menu", 
          "type": "menu",
          "menu": "custom",
          "icon": "bars",
-         "text": "Sub-Menu",
-         "items": [{
-               "id": "custom-item-4",
+         "text": "Gesture Actions",
+         "items": [
+            {
+               "id": "level3_gesture_up_menu", 
+               "type": "menu",
+               "menu": "custom",
+               "icon": "bars",
+               "text": "Up Gesture Action",
+               "items": [
+                  {
+                     "id": "up-action1",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Hide All",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_UP_HIDEALL"
+                     }
+                  },
+                  {
+                     "id": "up-action2",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Show All",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_UP_SHOWALL"
+                     }
+                  },
+                  {
+                     "id": "up-action3",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Page up",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_UP_PAGEUP"
+                     }
+                  },
+                  {
+                     "id": "up-action4",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Page down",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_UP_PAGEDOWN"
+                     }
+                  }
+               ]
+            },
+            {
+               "id": "level3_gesture_down_menu", 
+               "type": "menu",
+               "menu": "custom",
+               "icon": "bars",
+               "text": "Down Gesture Action",
+               "items": [
+                  {
+                     "id": "down`-`action1",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Hide All",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_DOWN_HIDEALL"
+                     }
+                  },
+                  {
+                     "id": "down-action2",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Show All",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_DOWN_SHOWALL"
+                     }
+                  },
+                  {
+                     "id": "down-action3",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Page up",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_DOWN_PAGEUP"
+                     }
+                  },
+                  {
+                     "id": "down-action4",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Page down",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_DOWN_PAGEDOWN"
+                     }
+                  }
+               ]
+            },
+            {
+               "id": "level3_gesture_left_menu", 
+               "type": "menu",
+               "menu": "custom",
+               "icon": "bars",
+               "text": "Left Gesture Action",
+               "items": [
+                  {
+                     "id": "left-action1",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Hide All",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_LEFT_HIDEALL"
+                     }
+                  },
+                  {
+                     "id": "left-action2",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Show All",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_LEFT_SHOWALL"
+                     }
+                  },
+                  {
+                     "id": "left-action3",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Page up",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_LEFT_PAGEUP"
+                     }
+                  },
+                  {
+                     "id": "left-action4",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Page down",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_LEFT_PAGELEFT"
+                     }
+                  }
+               ]
+            },
+            {
+               "id": "level3_gesture_right_menu", 
+               "type": "menu",
+               "menu": "custom",
+               "icon": "bars",
+               "text": "Right Gesture Action",
+               "items": [
+                  {
+                     "id": "right-action1",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Hide All",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_RIGHT_HIDEALL"
+                     }
+                  },
+                  {
+                     "id": "right-action2",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Show All",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_RIGHT_SHOWALL"
+                     }
+                  },
+                  {
+                     "id": "right-action3",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Page up",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_RIGHT_PAGEUP"
+                     }
+                  },
+                  {
+                     "id": "right-action4",
+                     "type": "button",
+                     "icon": "dot-circle-o",
+                     "text": "Page down",
+                     "action": "NOTIFICATION",
+                     "content": {
+                        "notification": "GESTURE_RIGHT_PAGERIGHT"
+                     }
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "id": "level2_wifi_menu", 
+         "type": "menu",
+         "menu": "custom",
+         "icon": "bars",
+         "text": "Wi-Fi",
+         "items": [
+            {
+               "id": "wifi-name",
                "type": "input",
                "icon": "dot-circle-o",
-               "text": "Sub-Menu Item 1",
+               "text": "Network name",
                "action": "NOTIFICATION",
                "content": {
                   "notification": "NOTIFICATION_INPUT"
                }
             },
             {
-               "id": "custom-item-2",
-               "type": "slider",
+               "id": "wifi-pass",
+               "type": "input",
                "icon": "dot-circle-o",
-               "text": "Sub-Menu Item 2",
+               "text": "Network password",
                "action": "NOTIFICATION",
                "content": {
-                  "notification": "NOTIFICATION_SLIDER",
-                  "payload": {
-                     "title": "Payload Object",
-                     "message": "This notification requires a payload object",
-                     "value" : "x"
-                  }
+                  "notification": "NOTIFICATION_INPUT"
                }
             }
          ]

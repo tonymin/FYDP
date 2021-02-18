@@ -19,6 +19,7 @@ module.exports = NodeHelper.create({
         switch(notification){
             case "NOTIFICATION_INPUT":
             case "NOTIFICATION_SLIDER":
+            case "NOTIFICATION_DROPDOWN":
                 console.log(this.name + " [node_helper] notification: " + notification + " Payload: %j",payload);
                 break;
             case "DOWN_GESTURE":

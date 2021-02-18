@@ -156,6 +156,9 @@ var config = {
 				customMenu: "custom_menu_remote_control.json",
 			}
 		},
+		{
+			module: "MMM-Remote-Control-Repository",
+		},
 	]
 };
 
