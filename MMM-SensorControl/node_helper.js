@@ -17,6 +17,16 @@ module.exports = NodeHelper.create({
         //console.log(this.name + " [node_helper] notification: " + notification + " Payload: "+payload);
         var self = this;
         switch(notification){
+            case "NETWORK_SSID":
+                this.network_ssid = payload.value;
+                this.attemptNetworkConnectionOnlySSID();
+                break:
+            case "NETWORK_PSK":
+                this.network_psk = payload.value;
+                if (this.network_ssid != undefined){
+                    this.attemptNetworkConnection();
+                }
+                break:
             case "NOTIFICATION_INPUT":
             case "NOTIFICATION_SLIDER":
             case "NOTIFICATION_DROPDOWN":
@@ -151,5 +161,15 @@ module.exports = NodeHelper.create({
         var self = this;
         clearTimeout(self.deactivateMonitorTimeout);
     },
+
+    attemptNetworkConnectionOnlySSID : function(){
+        var self = this;
+        child_process.exec("sudo python "+__dirname+"/../../../MMM-SensorControl/scripts/network.py "+self.network_ssid, null);
+    },
+
+    attemptNetworkConnection : function(){
+        var self = this;
+        child_process.exec("sudo python "+__dirname+"/../../../MMM-SensorControl/scripts/network.py "+self.network_ssid + " --psk "+self.network_psk, null);
+    }
 
 });

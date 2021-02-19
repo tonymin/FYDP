@@ -6,11 +6,15 @@ import argparse
 from pprint import pprint
 
 parser = argparse.ArgumentParser()
-parser.add_argument("ssid")
-parser.add_argument("psk")
+parser.add_argument("ssid", help = "network SSID.")
+parser.add_argument("--psk", help = "network password, if not provided, script will attempt using saved credentials.")
 args = parser.parse_args()
 arg_ssid = args.ssid
 arg_psk = args.psk
+if arg_psk:
+    print("psk provided")
+else:
+    print("psk not provided")
 
 # const
 config_file = "/etc/wpa_supplicant/wpa_supplicant.conf"
@@ -56,7 +60,14 @@ with open(config_file, 'r') as file:
                 ssid = ssid_match.group(1)
             if psk_match:
                 psk = psk_match.group(1)
-            
+
+# if psk not provided, check if ssid exists and use the original psk. Otherwise quit since psk not available
+if not arg_psk:
+    if arg_ssid in networks:
+        arg_psk = networks[ssid]["psk"]
+    else:
+        exit()
+
 # create a tmp conf file
 shutil.copyfile(config_template, config_copy)
 
