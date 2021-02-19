@@ -1,4 +1,5 @@
 MMM-SensorControl/scripts/wpa_supplicant.conf
+MMM-SensorControl/scripts/*.log
 
 MMM-SensorControl/scripts/tmp
 custom_menu_remote_control.json
