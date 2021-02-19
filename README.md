@@ -29,3 +29,17 @@ MMM-Remote-Control patch:
                     { payload: Object.assign({}, content.content == undefined ? {} : content.content.payload, {value: document.getElementById(`${content.id}-input`).value})},
                     { value: document.getElementById(`${content.id}-input`).value }));
   - Fix summary: Appends the "value" property in the "payload" tag. Override any existing "value" property.
+
+- Custom menu dropdown feature
+```
+        else if (content.type === "dropdown") {
+            $item = $("<select>").addClass(`menu-element ${menu}-menu medium`).attr({
+                "id": `${content.id}-dropdown`,
+            });
+            content.list.forEach(item => $item.append(new Option(item, item)));
+            
+            $item.change(() => {
+                this.sendSocketNotification("REMOTE_ACTION", Object.assign({ action: content.action.toUpperCase() }, content.content, { payload: Object.assign({}, content.content == undefined ? {} : (typeof content.content.payload === 'string' ? {string: content.content.payload} : content.content.payload), {value: document.getElementById(`${content.id}-dropdown`).value})}, { value: document.getElementById(`${content.id}-dropdown`).value }));
+            })
+        }
+```

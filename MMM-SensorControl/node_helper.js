@@ -20,13 +20,13 @@ module.exports = NodeHelper.create({
             case "NETWORK_SSID":
                 this.network_ssid = payload.value;
                 this.attemptNetworkConnectionOnlySSID();
-                break:
+                break;
             case "NETWORK_PSK":
                 this.network_psk = payload.value;
                 if (this.network_ssid != undefined){
                     this.attemptNetworkConnection();
                 }
-                break:
+                break;
             case "NOTIFICATION_INPUT":
             case "NOTIFICATION_SLIDER":
             case "NOTIFICATION_DROPDOWN":

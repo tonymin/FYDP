@@ -218,11 +218,11 @@
          "items": [
             {
                "id": "wifi-name",
-               "type": "input",
+               "type": "dropdown",
                "icon": "dot-circle-o",
                "text": "Network name",
                "action": "NOTIFICATION",
-               "list": [],
+               "list": ["REPLACE_ME"],
                "content": {
                   "notification": "NOTIFICATION_INPUT"
                }
