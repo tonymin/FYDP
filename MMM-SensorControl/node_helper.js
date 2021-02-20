@@ -11,12 +11,21 @@ const fs = require("fs");
 module.exports = NodeHelper.create({
     start: function(){
         console.log(this.name + " has started!");
+        console.log(this.name + " Running network script!");
+        child_process.exec("sudo python "+__dirname+"/../../../MMM-SensorControl/scripts/prepare_custom_menu.py", null);
+
     },
     
     socketNotificationReceived: function( notification, payload){
         //console.log(this.name + " [node_helper] notification: " + notification + " Payload: "+payload);
         var self = this;
         switch(notification){
+            case "DISABLE_ACCESS_POINT":
+                this.disableAP();
+                break;
+            case "ENABLE_ACCESS_POINT":
+                this.enableAP();
+                break;
             case "NETWORK_SSID":
                 this.network_ssid = payload.value;
                 this.attemptNetworkConnectionOnlySSID();
@@ -76,6 +85,21 @@ module.exports = NodeHelper.create({
             default:
                 break;
         }
+    },
+
+    gestureMappingNotification : function(notification){
+        // gesture mapping notification syntax: GESTURE_<Direction>_<Action>. E.g. GESTURE_UP_SHOWALL
+        var regex = /gesture_(.*)_(.*)/i;
+        var found = notification.match(regex);
+        if (found === null){
+            return;
+        }
+        var direction = found[1];
+        var action = found[2];
+
+        // TODO: gesture mapping done here
+        // TODO: need to configure default gesture mapping
+        
     },
 
     startSensorScript : function(){
@@ -170,6 +194,16 @@ module.exports = NodeHelper.create({
     attemptNetworkConnection : function(){
         var self = this;
         child_process.exec("sudo python "+__dirname+"/../../../MMM-SensorControl/scripts/network.py "+self.network_ssid + " --psk "+self.network_psk, null);
+    },
+
+    disableAP : function(){
+        // assume AP is wlan1
+        child_process.exec("sudo ifdown wlan1", null);
+    },
+
+    enableAP : function(){
+        // assume AP is wlan1
+        child_process.exec("sudo ifup wlan1", null);
     }
 
 });

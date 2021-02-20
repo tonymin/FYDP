@@ -224,7 +224,7 @@
                "action": "NOTIFICATION",
                "list": ["REPLACE_ME"],
                "content": {
-                  "notification": "NOTIFICATION_INPUT"
+                  "notification": "NETWORK_SSID"
                }
             },
             {
@@ -234,7 +234,7 @@
                "text": "Network password",
                "action": "NOTIFICATION",
                "content": {
-                  "notification": "NOTIFICATION_INPUT"
+                  "notification": "NETWORK_PSK"
                }
             }
          ]
