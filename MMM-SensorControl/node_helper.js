@@ -14,6 +14,12 @@ module.exports = NodeHelper.create({
         console.log(this.name + " Running network script!");
         child_process.exec("sudo python "+__dirname+"/../../../MMM-SensorControl/scripts/prepare_custom_menu.py", null);
 
+        // need to configure default gesture mapping
+        this.up_action = this.showAll;
+        this.down_action = this.hideAll;
+        this.left_action = this.pageUp;
+        this.right_action = this.pageDown;
+
     },
     
     socketNotificationReceived: function( notification, payload){
@@ -42,12 +48,16 @@ module.exports = NodeHelper.create({
                 console.log(this.name + " [node_helper] notification: " + notification + " Payload: %j",payload);
                 break;
             case "DOWN_GESTURE":
+                this.down_action();
                 break;
             case "LEFT_GESTURE":
+                this.left_action();
                 break;
             case "RIGHT_GESTURE":
+                this.right_action();
                 break;
             case "UP_GESTURE":
+                this.up_action();
                 break;
             case "CONFIG":
                 this.config = payload;
@@ -98,7 +108,7 @@ module.exports = NodeHelper.create({
         var action = found[2];
 
         // TODO: gesture mapping done here
-        // TODO: need to configure default gesture mapping
+        
         
     },
 
@@ -204,6 +214,23 @@ module.exports = NodeHelper.create({
     enableAP : function(){
         // assume AP is wlan1
         child_process.exec("sudo ifup wlan1", null);
+    },
+
+    pageUp : function(){
+        this.sendSocketNotification("PAGE_INCREMENT");
+    },
+
+    pageDown : function(){
+        this.sendSocketNotification("PAGE_DECREMENT");
+    },
+
+    showAll : function(){
+        this.sendSocketNotification("SHOW_ALL", true);
+    },
+
+    hideAll : function(){
+        this.sendSocketNotification("HIDE_ALL", true);
     }
+
 
 });

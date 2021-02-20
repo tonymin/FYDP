@@ -97,6 +97,12 @@ Module.register("MMM-SensorControl",{
                 MM.getModules().enumerate(module => module.hide(1000, lockStringObj));
                 //setTimeout(() => {MM.getModules().enumerate(module => module.show(1000, lockStringObj));}, 5000); // just for testing
                 break;
+            case "PAGE_DECREMENT":
+                this.sendNotification("PAGE_DECREMENT")
+                break;
+            case "PAGE_INCREMENT":
+                this.sendNotification("PAGE_INCREMENT")
+                break;
             default:
                 break;
         }
