@@ -104,11 +104,51 @@ module.exports = NodeHelper.create({
         if (found === null){
             return;
         }
-        var direction = found[1];
-        var action = found[2];
 
-        // TODO: gesture mapping done here
-        
+        // get the action function
+        var action = found[2];
+        var action_function = null;
+        switch(action){
+            case "HIDEALL":
+                action_function = this.hideAll;
+                break;
+            case "SHOWALL":
+                action_function = this.showAll;
+                break;
+            case "PAGEUP":
+                action_function = this.pageUp;
+                break;
+            case "PAGEDOWN":
+                action_function = this.pageDown;
+                break;
+            default:
+                break;
+        }
+
+        if (action_function === null){
+            console.log(this.name + " [gestureMappingNotification] ERROR: Unable to map a action function!");
+            return;
+        }
+
+        // assign action handles
+        var direction = found[1];
+        switch(direction){
+            case "UP":
+                this.up_action = action_function;
+                break;
+            case "DOWN":
+                this.down_action = action_function;
+                break;
+            case "LEFT":
+                this.left_action = action_function;
+                break;
+            case "RIGHT":
+                this.right_action = action_function;
+                break;
+            default:
+                console.log(this.name + " [gestureMappingNotification] ERROR: Direction invalid");
+                break;
+        }
         
     },
 
