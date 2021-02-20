@@ -238,6 +238,35 @@
                }
             }
          ]
+      },
+      {
+         "id": "level2_access_point_menu", 
+         "type": "menu",
+         "menu": "custom",
+         "icon": "bars",
+         "text": "Acess Point",
+         "items": [
+            {
+               "id": "AP_ON",
+               "type": "button",
+               "icon": "dot-circle-o",
+               "text": "Enable Access Point",
+               "action": "NOTIFICATION",
+               "content": {
+                  "notification": "ENABLE_ACCESS_POINT"
+               }
+            },
+            {
+               "id": "AP_OFF",
+               "type": "button",
+               "icon": "dot-circle-o",
+               "text": "Disable Access Point",
+               "action": "NOTIFICATION",
+               "content": {
+                  "notification": "DISABLE_ACCESS_POINT"
+               }
+            }
+         ]
       }
    ]
 }
