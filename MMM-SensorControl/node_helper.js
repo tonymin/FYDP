@@ -257,11 +257,13 @@ module.exports = NodeHelper.create({
     },
 
     pageUp : function(){
-        this.sendSocketNotification("PAGE_INCREMENT");
+        //this.sendSocketNotification("PAGE_INCREMENT");
+        this.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:"PAGE_INCREMENT", payload:{}});
     },
 
     pageDown : function(){
-        this.sendSocketNotification("PAGE_DECREMENT");
+        //this.sendSocketNotification("PAGE_DECREMENT");
+        this.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:"PAGE_DECREMENT", payload:{}});
     },
 
     showAll : function(){

@@ -103,6 +103,9 @@ Module.register("MMM-SensorControl",{
             case "PAGE_INCREMENT":
                 this.sendNotification("PAGE_INCREMENT")
                 break;
+            case "BROADCAST_NOTIFICATION":
+                this.sendNotification(payload.notification, payload.payload)
+                break;
             default:
                 break;
         }
