@@ -248,12 +248,12 @@ module.exports = NodeHelper.create({
 
     disableAP : function(){
         // assume AP is wlan1
-        child_process.exec("sudo ifdown wlan1", null);
+        child_process.exec("sudo ifconfig wlan1 down", null);
     },
 
     enableAP : function(){
         // assume AP is wlan1
-        child_process.exec("sudo ifup wlan1", null);
+        child_process.exec("sudo ifconfig wlan1 up", null);
     },
 
     pageUp : function(){
