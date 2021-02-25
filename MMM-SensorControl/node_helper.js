@@ -1,9 +1,3 @@
-/*
-    NOTE: 
-    Some Key functionalities are integrated from the MIT liscenced opensource module "MMM-PIR-Sensor"
-        credits to the author of https://github.com/paviro/MMM-PIR-Sensor
-*/
-
 var NodeHelper = require("node_helper")
 const child_process = require("child_process");
 const fs = require("fs");
