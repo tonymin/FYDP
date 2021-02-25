@@ -87,6 +87,7 @@ module.exports = NodeHelper.create({
                 this.resetIdleTimer();
                 break;
             default:
+                this.gestureMappingNotification(notification); // checking if gesture mapping notification
                 break;
         }
     },
