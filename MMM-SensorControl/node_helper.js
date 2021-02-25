@@ -226,9 +226,14 @@ module.exports = NodeHelper.create({
     resetIdleTimer: function(){
         var self = this;
         clearTimeout(self.deactivateMonitorTimeout);
+        var time = self.config.idle_timer;
+        if (typeof time != "number" || time < 5) {
+            console.log("idle_timer reset to 5.");
+            time = 5;
+        }
         self.deactivateMonitorTimeout = setTimeout(function() {
             self.deactivateMonitor();
-        }, self.config.idle_timer*1000);
+        }, time*1000);
     },
 
     clearIdleTimer: function(){
