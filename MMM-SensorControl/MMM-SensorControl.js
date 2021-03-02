@@ -8,6 +8,7 @@ Module.register("MMM-SensorControl",{
     defaults:{
         text: "Hello world",
         idle_timer: 10, // in seconds
+        max_ultrasonic_range: 100 // in cm
     },
 
     start: function() {
