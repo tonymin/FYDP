@@ -59,9 +59,10 @@ def on_PIR_detect():
         print("[on_PIR_detect] An exception occurred")
         return 300 # return a distance that is beyond the detection range
 
-def loop():
+def loop(config):
     state = 0
     user_detected = False
+    max_distance = 100 if "max_ultrasonic_range" not in config or type(config["max_ultrasonic_range"]) is not int else config["max_ultrasonic_range"]
     while True:
         i = GPIO.input(PIR_InPin)
         if i:
@@ -78,7 +79,7 @@ def loop():
                 # when PIR triggers and user is not detected, launch the sonar pulses to detect distance
                 distance = on_PIR_detect()
                 data = {"distance(cm)":distance}
-                if distance < 100: # TODO: make distance a parameter
+                if distance < max_distance: # check ultrasonic detection distance
                     x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_detected", \
                         data=json.dumps(data), headers={'Content-Type': 'application/json'})
                     user_detected = True
@@ -105,20 +106,23 @@ if __name__ == '__main__':    # Program entrance
     print ('Program is starting ... \n')
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("pos1", help="Positional arg 1")
+    parser.add_argument("config")
 
     args = parser.parse_args()
+    print(args.config)
 
-    data = {
-        'pos1 arg' : args.pos1,
-        'sensor reset' : 1
-    }
-    #x = requests.post("http://localhost:8080/api/module/MMM-SensorControl/pir_trigger", data=json.dumps(data), headers={'Content-Type': 'application/json'})
+    # remove the outter quotes
+    config = json.loads(args.config.strip("'"))
+
+    data = {}
+    for cf in config:
+        data[cf]=config[cf]
+    x = requests.post("http://localhost:8080/api/module/MMM-SensorControl/pir_trigger", data=json.dumps(data), headers={'Content-Type': 'application/json'})
 
     setup()
 
     try:
-        loop()
+        loop(config)
     except KeyboardInterrupt:   # Press ctrl-c to end the program.
         destroy()
 

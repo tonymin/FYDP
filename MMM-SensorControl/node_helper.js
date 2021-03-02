@@ -160,7 +160,7 @@ module.exports = NodeHelper.create({
         const err = fs.openSync(__dirname+"/../../../MMM-SensorControl/scripts/stderr.log", "w");
 
         // spawn script
-        this.py_handle = child_process.spawn('python', [__dirname+'/scripts/sensor_loop.py', 'samepl_arge'],
+        this.py_handle = child_process.spawn('python', [__dirname+'/scripts/sensor_loop.py', '\''+JSON.stringify(self.config)+'\''],
         {
             stdio: [process.stdin, out, err]
         });	
