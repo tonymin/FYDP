@@ -247,8 +247,14 @@ module.exports = NodeHelper.create({
     },
 
     disableAP : function(){
-        // assume AP is wlan1
-        child_process.exec("sudo ifconfig wlan1 down", null);
+        // assume AP is wlan1. Only allow shut down if connected to network on wlan0.
+        require('dns').resolve('www.google.com', function(err) {
+            if (err) {
+                console.log("No internet connection, AP cannot be shut down!");
+            } else {
+                child_process.exec("sudo ifconfig wlan1 down", null);
+            }
+        });
     },
 
     enableAP : function(){

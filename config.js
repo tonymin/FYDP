@@ -102,23 +102,7 @@ var config = {
 				broadcastNewsFeeds: true,
 				broadcastNewsUpdates: true
 			}
-		},/*
-		{
-			module: "MMM-PIR-Sensor",
-			config: {
-				sensorPin: 38
-			}
 		},
-		{
-			module: "MMM-NearCompliments",
-			position: "bottom_left",
-			config: {
-				echoPin: 18,
-				triggerPin: 16,
-				usePIR: true,
-				calibrate: true // debug
-			}
-		},*/
 		{
 			module: 'MMM-SensorControl',
 			position: "top_right",
@@ -132,7 +116,7 @@ var config = {
 					modules:
 						[[ "weatherforecast", "newsfeed"],
 						 [ "calendar", "compliments" ]],
-					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control", "MMM-NearCompliments","MMM-SensorControl"],
+					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control", "MMM-NearCompliments","MMM-SensorControl", "MMM-network-signal"],
 					rotationTime : 1000, // auto-rotate time in ms (NOTE: timing is quite off ...)
 					/*
 					hiddenPages: {
@@ -157,8 +141,16 @@ var config = {
 			}
 		},
 		{
-			module: "MMM-Remote-Control-Repository",
+			module: "MMM-Remote-Control-Repository"
 		},
+		{
+			module: "MMM-network-signal",
+			position: "bottom_right",
+			config: {
+				// Configuration of the module goes here
+			}
+
+		}
 	]
 };
 
