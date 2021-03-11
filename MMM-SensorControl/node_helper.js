@@ -8,6 +8,9 @@ module.exports = NodeHelper.create({
         console.log(this.name + " Running network script!");
         child_process.exec("sudo python "+__dirname+"/../../../MMM-SensorControl/scripts/prepare_custom_menu.py", null);
 
+        this.monitorActive = true;
+        this.forceMonitorActive = false;
+
         // need to configure default gesture mapping
         this.up_action = this.showAll;
         this.down_action = this.hideAll;
@@ -199,7 +202,11 @@ module.exports = NodeHelper.create({
 
     activateMonitor : function (){
         var self = this;
-        this.sendSocketNotification("SHOW_ALL", true);
+
+        if (self.monitorActive === false){
+            this.sendSocketNotification("SHOW_ALL", true);
+            self.monitorActive = true;
+        }
         
         /*
         // Check if hdmi output is already on
@@ -220,6 +227,7 @@ module.exports = NodeHelper.create({
         //child_process.exec("/usr/bin/vcgencmd display_power 0", null);
 
         this.sendSocketNotification("HIDE_ALL", true);
+        self.monitorActive = false;
     },
 
     resetIdleTimer: function(){
@@ -277,12 +285,28 @@ module.exports = NodeHelper.create({
     },
 
     showAll : function(){
-        this.sendSocketNotification("SHOW_ALL", true);
+        //this.startSensorScript(); // reset sensor script so it doesn
+        //this.activateMonitor(); // wont do anything if monitor is already ON
+        if (self.monitorActive === false){
+            this.sendSocketNotification("SHOW_ALL", true);
+            this.resetIdleTimer();
+        }
     },
 
     hideAll : function(){
-        this.sendSocketNotification("HIDE_ALL", true);
-    }
+        // if monitor is active, force deactivate
+        if (self.monitorActive === true){
+            this.startSensorScript(); // reset script
+
+            // hide all after 1 second to avoid late coming notifications that activates monitor
+            setTimeout(function() {
+                this.deactivateMonitor();
+            }, 1000);
+            
+        }
+        
+    },
+    
 
 
 });
