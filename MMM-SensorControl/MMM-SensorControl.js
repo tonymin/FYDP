@@ -151,10 +151,10 @@ Module.register("MMM-SensorControl",{
             notification: "UP_GESTURE",
         };
         registeredActions.down_gesture = {
-            notification: "down_GESTURE",
+            notification: "DOWN_GESTURE",
         };
         registeredActions.left_gesture = {
-            notification: "left_GESTURE",
+            notification: "LEFT_GESTURE",
         };
         registeredActions.right_gesture = {
             notification: "RIGHT_GESTURE",
