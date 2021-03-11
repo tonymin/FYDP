@@ -43,15 +43,19 @@ module.exports = NodeHelper.create({
                 break;
             case "DOWN_GESTURE":
                 this.down_action();
+                console.log("DOWN_GESTURE")
                 break;
             case "LEFT_GESTURE":
                 this.left_action();
+                console.log("LEFT_GESTURE")
                 break;
             case "RIGHT_GESTURE":
                 this.right_action();
+                console.log("RIGHT_GESTURE")
                 break;
             case "UP_GESTURE":
                 this.up_action();
+                console.log("UP_GESTURE")
                 break;
             case "CONFIG":
                 this.config = payload;
