@@ -73,15 +73,7 @@ def loop(config):
                 # notify magicmirror
                 x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/pir_trigger")
                 print("pir_detected")
-                distance = on_PIR_detect()
-                data = {"distance(cm)":distance}
-                if distance < max_distance: # check ultrasonic detection distance
-                    x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_detected", \
-                        data=json.dumps(data), headers={'Content-Type': 'application/json'})
-                    user_detected = True
-                    print("user_detected")
-                    time.sleep(1)
-'''
+
             # actively uses ultrasonic to detect user distance while PIR is triggered
             if not user_detected:
                 # when PIR triggers and user is not detected, launch the sonar pulses to detect distance
@@ -96,7 +88,6 @@ def loop(config):
                 # user is already detected, PIR still active. Send signal to MM to reset the idle timer
                 time.sleep(2) # wait a bit, we dont want to send to many signals
                 x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/user_detected")
-'''
         else:
             if state != i:
                 state = i
