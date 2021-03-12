@@ -17,6 +17,15 @@ module.exports = NodeHelper.create({
         this.left_action = this.pageUp;
         this.right_action = this.pageDown;
 
+        // process to check for internet connection, if no connection, turn on AP
+        this.internetChecker = setInterval(() => {
+            require('dns').resolve('www.google.com', function(err) {
+                if (err) {
+                    child_process.exec("sudo ifconfig wlan1 up", null);
+                }
+            });
+        }, 12000);
+
     },
     
     socketNotificationReceived: function( notification, payload){
