@@ -228,6 +228,7 @@ module.exports = NodeHelper.create({
 
         this.sendSocketNotification("HIDE_ALL", true);
         self.monitorActive = false;
+        //this.pageDown();
     },
 
     resetIdleTimer: function(){
@@ -276,12 +277,12 @@ module.exports = NodeHelper.create({
 
     pageUp : function(){
         //this.sendSocketNotification("PAGE_INCREMENT");
-        this.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:"PAGE_INCREMENT", payload:{}});
+        this.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:'PAGE_INCREMENT'});
     },
 
     pageDown : function(){
         //this.sendSocketNotification("PAGE_DECREMENT");
-        this.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:"PAGE_DECREMENT", payload:{}});
+        this.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:'PAGE_DECREMENT'});
     },
 
     showAll : function(){

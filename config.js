@@ -117,7 +117,7 @@ var config = {
 						[[ "weatherforecast", "newsfeed"],
 						 [ "calendar", "compliments" ]],
 					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control", "MMM-NearCompliments","MMM-SensorControl", "MMM-network-signal"],
-					rotationTime : 1000, // auto-rotate time in ms (NOTE: timing is quite off ...)
+					rotationTime : 10000, // auto-rotate time in ms (NOTE: timing is quite off ...)
 					/*
 					hiddenPages: {
 						"screenSaver": [ "clock", "MMM-SomeBackgroundImageModule" ],
