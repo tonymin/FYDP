@@ -23,7 +23,14 @@ Module.register("MMM-SensorControl",{
 
     getDom: function(){
         var wrapper = document.createElement("div");
-        wrapper.innerHTML = this.config.text;
+        //wrapper.innerHTML = this.config.text;
+        var ul = document.createElement("ul")
+        
+        var li_gesture=document.createElement('li');
+        li_gesture.innerHTML="Last Gesture:" + this.config.text;
+        ul.appendChild(li_gesture);
+
+        wrapper.appendChild(ul);
         return wrapper;
     },
 

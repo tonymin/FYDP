@@ -269,10 +269,15 @@ module.exports = NodeHelper.create({
     },
 
     disableAP : function(){
+        var self = this;
         // assume AP is wlan1. Only allow shut down if connected to network on wlan0.
         require('dns').resolve('www.google.com', function(err) {
             if (err) {
                 console.log("No internet connection, AP cannot be shut down!");
+                self.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:'SHOW_ALERT', payload: {
+                    title: "Access Point",
+                    message: "DISABLED"
+                }});
             } else {
                 child_process.exec("sudo ifconfig wlan1 down", null);
             }
@@ -280,8 +285,13 @@ module.exports = NodeHelper.create({
     },
 
     enableAP : function(){
+        var self= this;
         // assume AP is wlan1
         child_process.exec("sudo ifconfig wlan1 up", null);
+        self.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:'SHOW_ALERT', payload: {
+            title: "Access Point",
+            message: "ENABLED"
+        }});
     },
 
     pageUp : function(){
