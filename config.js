@@ -107,7 +107,8 @@ var config = {
 			module: 'MMM-SensorControl',
 			position: "top_right",
 			config: {
-				text: "Hello"
+				text: "Hello",
+				idle_timer: 20
 			}
 		},
 		{
@@ -115,7 +116,8 @@ var config = {
 			config: {
 					modules:
 						[[ "weatherforecast", "newsfeed"],
-						 [ "calendar", "compliments" ]],
+						 [ "calendar", "compliments" ],
+						 [ "compliments"]],
 					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control", "MMM-NearCompliments","MMM-SensorControl", "MMM-network-signal"],
 					rotationTime : 10000, // auto-rotate time in ms (NOTE: timing is quite off ...)
 					/*
