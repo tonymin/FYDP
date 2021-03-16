@@ -9,7 +9,6 @@ module.exports = NodeHelper.create({
         child_process.exec("sudo python "+__dirname+"/../../../MMM-SensorControl/scripts/prepare_custom_menu.py", null);
 
         this.monitorActive = true;
-        this.forceMonitorActive = false;
 
         // need to configure default gesture mapping
         this.up_action = this.showAll;
@@ -310,6 +309,7 @@ module.exports = NodeHelper.create({
         if (self.monitorActive === false){
             this.sendSocketNotification("SHOW_ALL", true);
             this.resetIdleTimer();
+            self.monitorActive === true;
         }
     },
 
