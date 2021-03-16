@@ -275,10 +275,16 @@ module.exports = NodeHelper.create({
                 console.log("No internet connection, AP cannot be shut down!");
                 self.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:'SHOW_ALERT', payload: {
                     title: "Access Point",
-                    message: "DISABLED"
+                    message: "No internet connection, AP cannot be shut down!",
+                    timer: 3000
                 }});
             } else {
                 child_process.exec("sudo ifconfig wlan1 down", null);
+                self.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:'SHOW_ALERT', payload: {
+                    title: "Access Point",
+                    message: "DISABLED",
+                    timer: 3000
+                }});
             }
         });
     },
@@ -289,7 +295,8 @@ module.exports = NodeHelper.create({
         child_process.exec("sudo ifconfig wlan1 up", null);
         self.sendSocketNotification("BROADCAST_NOTIFICATION", {notification:'SHOW_ALERT', payload: {
             title: "Access Point",
-            message: "ENABLED"
+            message: "ENABLED",
+            timer: 3000
         }});
     },
 
