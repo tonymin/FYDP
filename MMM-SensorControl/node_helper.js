@@ -24,6 +24,12 @@ module.exports = NodeHelper.create({
                 }
             });
         }, 12000);
+        /*
+        //Debug
+        setInterval(() => {
+            this.right_action();
+        }, 2000);
+        */
 
     },
     
@@ -159,6 +165,7 @@ module.exports = NodeHelper.create({
                 console.log(this.name + " [gestureMappingNotification] ERROR: Direction invalid");
                 break;
         }
+        console.log(this.name + " [gestureMappingNotification] Completed");
         
     },
 
@@ -313,16 +320,16 @@ module.exports = NodeHelper.create({
     showAll : function(){
         //this.startSensorScript(); // reset sensor script so it doesn
         //this.activateMonitor(); // wont do anything if monitor is already ON
-        if (self.monitorActive === false){
+        if (this.monitorActive === false){
             this.sendSocketNotification("SHOW_ALL", true);
             this.resetIdleTimer();
-            self.monitorActive === true;
+            this.monitorActive === true;
         }
     },
 
     hideAll : function(){
         // if monitor is active, force deactivate
-        if (self.monitorActive === true){
+        if (this.monitorActive === true){
             this.startSensorScript(); // reset script
 
             // hide all after 1 second to avoid late coming notifications that activates monitor
