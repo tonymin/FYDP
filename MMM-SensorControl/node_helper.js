@@ -328,13 +328,14 @@ module.exports = NodeHelper.create({
     },
 
     hideAll : function(){
+        var self = this;
         // if monitor is active, force deactivate
         if (this.monitorActive === true){
             this.startSensorScript(); // reset script
 
             // hide all after 1 second to avoid late coming notifications that activates monitor
             setTimeout(function() {
-                this.deactivateMonitor();
+                self.deactivateMonitor();
             }, 1000);
             
         }
