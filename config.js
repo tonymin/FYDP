@@ -70,7 +70,7 @@ var config = {
 		},
 		{
 			module: "currentweather",
-			position: "top_right",
+			position: "bottom_left",
 			config: {
 				location: "New York",
 				locationID: "", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
@@ -79,7 +79,7 @@ var config = {
 		},
 		{
 			module: "weatherforecast",
-			position: "top_right",
+			position: "bottom_left",
 			header: "Weather Forecast",
 			config: {
 				location: "New York",
@@ -115,10 +115,11 @@ var config = {
 			module: 'MMM-pages',
 			config: {
 					modules:
-						[[ "weatherforecast", "newsfeed"],
+						[[ "newsfeed"],
 						 [ "calendar", "compliments" ],
-						 [ "compliments"]],
-					fixed: ["clock", "currentweather", "MMM-page-indicator", "MMM-Remote-Control", "MMM-NearCompliments","MMM-SensorControl", "MMM-network-signal"],
+						 [ "compliments", "MMM-Remote-Control"],
+						 [ "currentweather", "weatherforecast"]],
+					fixed: ["clock", "MMM-page-indicator", , "MMM-NearCompliments","MMM-SensorControl", "MMM-network-signal"],
 					rotationTime : 10000, // auto-rotate time in ms (NOTE: timing is quite off ...)
 					/*
 					hiddenPages: {
