@@ -29,4 +29,4 @@ while True:
         print("right")
         x = requests.get("http://localhost:8080/api/module/MMM-SensorControl/right_gesture")
     
-    time.sleep(0.1) # sleep 100 ms
+    #time.sleep(0.1) # sleep 100 ms
