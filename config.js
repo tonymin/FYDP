@@ -78,6 +78,14 @@ var config = {
 			}
 		},
 		{
+			module: "weather",
+			position: "bottom_left",
+			config: {
+				// See 'Configuration options' for more information.
+				type: 'current'
+			}
+		},
+		{
 			module: "weatherforecast",
 			position: "bottom_left",
 			header: "Weather Forecast",
@@ -118,7 +126,7 @@ var config = {
 						[[ "newsfeed"],
 						 [ "calendar", "compliments" ],
 						 [ "compliments", "MMM-Remote-Control"],
-						 [ "currentweather", "weatherforecast"]],
+						 [ "weather"]],
 					fixed: ["clock", "MMM-page-indicator", , "MMM-NearCompliments","MMM-SensorControl", "MMM-network-signal"],
 					rotationTime : 10000, // auto-rotate time in ms (NOTE: timing is quite off ...)
 					/*
