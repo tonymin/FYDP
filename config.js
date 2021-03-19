@@ -72,17 +72,9 @@ var config = {
 			module: "currentweather",
 			position: "bottom_left",
 			config: {
-				location: "New York",
+				location: "Toronto",
 				locationID: "", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-				appid: "YOUR_OPENWEATHER_API_KEY"
-			}
-		},
-		{
-			module: "weather",
-			position: "bottom_left",
-			config: {
-				// See 'Configuration options' for more information.
-				type: 'current'
+				appid: "9834f0adef3873a6447fcfb12f0a5788"
 			}
 		},
 		{
@@ -90,9 +82,9 @@ var config = {
 			position: "bottom_left",
 			header: "Weather Forecast",
 			config: {
-				location: "New York",
+				location: "Toronto",
 				locationID: "5128581", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-				appid: "YOUR_OPENWEATHER_API_KEY"
+				appid: "9834f0adef3873a6447fcfb12f0a5788"
 			}
 		},
 		{
@@ -126,7 +118,7 @@ var config = {
 						[[ "newsfeed"],
 						 [ "calendar", "compliments" ],
 						 [ "compliments", "MMM-Remote-Control"],
-						 [ "weather"]],
+						 [ "currentweather"]],
 					fixed: ["clock", "MMM-page-indicator", , "MMM-NearCompliments","MMM-SensorControl", "MMM-network-signal"],
 					rotationTime : 10000, // auto-rotate time in ms (NOTE: timing is quite off ...)
 					/*
