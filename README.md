@@ -1,4 +1,4 @@
-# FYDP
+# Final year design project Electrical Engineering 2021
 
 Custom modules:
 - MMM-SensorControl
